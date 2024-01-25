@@ -7,8 +7,9 @@ phases:
       - git config --global credential.UseHttpPath true
   pre_build:
     commands:
-      - aws s3 ls
   build:
     commands:
+      - zip lambda_function.zip lambda_function.py
+      - aws lambda update-function-code --function-name python-config --zip-file file://lanbda_function.zip
   post_build:
     commands:
